@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NossaHistoriaRouteImport } from './routes/nossa-historia'
+import { Route as MixTurRouteImport } from './routes/mix-tur'
+import { Route as MixTruckCenterRouteImport } from './routes/mix-truck-center'
+import { Route as MixFretadosRouteImport } from './routes/mix-fretados'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
 
+const NossaHistoriaRoute = NossaHistoriaRouteImport.update({
+  id: '/nossa-historia',
+  path: '/nossa-historia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MixTurRoute = MixTurRouteImport.update({
+  id: '/mix-tur',
+  path: '/mix-tur',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MixTruckCenterRoute = MixTruckCenterRouteImport.update({
+  id: '/mix-truck-center',
+  path: '/mix-truck-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MixFretadosRoute = MixFretadosRouteImport.update({
+  id: '/mix-fretados',
+  path: '/mix-fretados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/mix-fretados': typeof MixFretadosRoute
+  '/mix-truck-center': typeof MixTruckCenterRoute
+  '/mix-tur': typeof MixTurRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/mix-fretados': typeof MixFretadosRoute
+  '/mix-truck-center': typeof MixTruckCenterRoute
+  '/mix-tur': typeof MixTurRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/mix-fretados': typeof MixFretadosRoute
+  '/mix-truck-center': typeof MixTruckCenterRoute
+  '/mix-tur': typeof MixTurRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contato'
+    | '/galeria'
+    | '/mix-fretados'
+    | '/mix-truck-center'
+    | '/mix-tur'
+    | '/nossa-historia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contato'
+    | '/galeria'
+    | '/mix-fretados'
+    | '/mix-truck-center'
+    | '/mix-tur'
+    | '/nossa-historia'
+  id:
+    | '__root__'
+    | '/'
+    | '/contato'
+    | '/galeria'
+    | '/mix-fretados'
+    | '/mix-truck-center'
+    | '/mix-tur'
+    | '/nossa-historia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContatoRoute: typeof ContatoRoute
+  GaleriaRoute: typeof GaleriaRoute
+  MixFretadosRoute: typeof MixFretadosRoute
+  MixTruckCenterRoute: typeof MixTruckCenterRoute
+  MixTurRoute: typeof MixTurRoute
+  NossaHistoriaRoute: typeof NossaHistoriaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/nossa-historia': {
+      id: '/nossa-historia'
+      path: '/nossa-historia'
+      fullPath: '/nossa-historia'
+      preLoaderRoute: typeof NossaHistoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mix-tur': {
+      id: '/mix-tur'
+      path: '/mix-tur'
+      fullPath: '/mix-tur'
+      preLoaderRoute: typeof MixTurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mix-truck-center': {
+      id: '/mix-truck-center'
+      path: '/mix-truck-center'
+      fullPath: '/mix-truck-center'
+      preLoaderRoute: typeof MixTruckCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mix-fretados': {
+      id: '/mix-fretados'
+      path: '/mix-fretados'
+      fullPath: '/mix-fretados'
+      preLoaderRoute: typeof MixFretadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContatoRoute: ContatoRoute,
+  GaleriaRoute: GaleriaRoute,
+  MixFretadosRoute: MixFretadosRoute,
+  MixTruckCenterRoute: MixTruckCenterRoute,
+  MixTurRoute: MixTurRoute,
+  NossaHistoriaRoute: NossaHistoriaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
