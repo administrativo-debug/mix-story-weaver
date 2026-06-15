@@ -1,7 +1,8 @@
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo-mix.png";
+import logoAsset from "@/assets/grupo-mix-logo.png.asset.json";
+const logo = logoAsset.url;
 
 const nav = [
   { to: "/", label: "Início" },
