@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento de Rotas - MIX Consultoria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        tr:hover {
+            background: #ecf0f1;
+        }
+
+        .currency {
+            text-align: right;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .total-row {
+            background: #ecf0f1;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 15px 0;
+        }
+
+        .warning {
+            background: #f8d7da;
+            padding: 15px;
+            border-left: 4px solid #dc3545;
+            margin: 15px 0;
+        }
+
+        .box {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            background: #ecf0f1;
+        }
+
+        .price-box {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .price-label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .price-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .price-year {
+            font-size: 0.9em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-box {
+            background: white;
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .comparison-box h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>📊 ORÇAMENTO DE SERVIÇOS DE TRANSPORTE</h1>
+            <p class="subtitle">Análise Completa e Detalhada de Rotas</p>
+            <p class="date">Julho 2026 | MIX Consultoria de Transportes</p>
+        </header>
+
+        <!-- RESUMO EXECUTIVO -->
+        <h2>🎯 Resumo Executivo</h2>
+        <div class="section">
+            <p>Análise profissional de <strong>2 serviços de transporte</strong> com mapeamento completo de rotas, quilometragem estimada, custos operacionais detalhados e proposta comercial com margem competitiva.</p>
+
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th>Serviço</th>
+                    <th>Localidade</th>
+                    <th>Veículos</th>
+                    <th>Turnos</th>
+                    <th>Mensal</th>
+                </tr>
+                <tr>
+                    <td><strong>São Sebastião do Passé</strong></td>
+                    <td>São Sebastião do Passé, BA</td>
+                    <td>3-5 veículos</td>
+                    <td>3 turnos (A,B,C)</td>
+                    <td class="currency">R$ 30.450 - 77.235</td>
+                </tr>
+                <tr>
+                    <td><strong>Camaçari (Cicopal)</strong></td>
+                    <td>Camaçari, BA</td>
+                    <td>1 ônibus</td>
+                    <td>1 turno</td>
+                    <td class="currency">R$ 23.742</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SERVIÇO 1 -->
+        <h2>🚌 Serviço 1: São Sebastião do Passé</h2>
+
+        <h3>Estrutura Operacional</h3>
+        <div class="section">
+            <ul>
+                <li><strong>Rota:</strong> São Sebastião do Passé → Araçatiba</li>
+                <li><strong>Quilometragem:</strong> 90 km por ciclo (45 km ida + 45 km volta)</li>
+                <li><strong>Turnos Ônibus:</strong> 3 turnos (A, B, C) = 5 viagens/semana cada</li>
+                <li><strong>Turnos Micro:</strong> 5 saídas diferentes + 6 retornos = 37 viagens/semana</li>
+                <li><strong>Total Mensal:</strong> 10.652 km</li>
+                <li><strong>Frequência:</strong> Segunda a Sexta + Turno especial de segunda-feira</li>
+            </ul>
+        </div>
+
+        <h3>Detalhamento de Custos</h3>
+        <div class="section">
+            <table>
+                <tr>
+                    <th>Item de Custo</th>
+                    <th>Valor Mensal</th>
+                    <th>Percentual</th>
+                </tr>
+                <tr>
+                    <td>Combustível (diesel)</td>
+                    <td class="currency">R$ 10.452,00</td>
+                    <td>18,7%</td>
+                </tr>
+                <tr>
+                    <td>Manutenção preventiva e corretiva</td>
+                    <td class="currency">R$ 15.978,00</td>
+                    <td>28,6%</td>
+                </tr>
+                <tr>
+                    <td>Mão de obra (5 motoristas)</td>
+                    <td class="currency">R$ 26.250,00</td>
+                    <td>47,0%</td>
+                </tr>
+                <tr>
+                    <td>Pneus e peças de reposição</td>
+                    <td class="currency">R$ 1.045,00</td>
+                    <td>1,9%</td>
+                </tr>
+                <tr>
+                    <td>Seguros e taxas</td>
+                    <td class="currency">R$ 1.058,00</td>
+                    <td>1,9%</td>
+                </tr>
+                <tr>
+                    <td>Outros (limpeza, admin, etc)</td>
+                    <td class="currency">R$ 1.050,00</td>
+                    <td>1,9%</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>CUSTO OPERACIONAL TOTAL</strong></td>
+                    <td class="currency"><strong>R$ 55.833,00</strong></td>
+                    <td><strong>100%</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Proposta Comercial</h3>
+        <div class="comparison-grid">
+            <div class="comparison-box">
+                <h4>✓ Opção Otimizada (RECOMENDADA)</h4>
+                <p><strong>Frota: 3 veículos</strong></p>
+                <p style="font-size: 1.4em; color: #27ae60; margin: 15px 0;"><strong>R$ 30.450/mês</strong></p>
+                <p style="color: #7f8c8d;">R$ 365.400/ano</p>
+                <p style="font-size: 0.9em; margin-top: 10px;">Margem: 25% | Com rodízio inteligente</p>
+            </div>
+            <div class="comparison-box">
+                <h4>Opção Completa</h4>
+                <p><strong>Frota: 5 veículos</strong></p>
+                <p style="font-size: 1.4em; color: #2980b9; margin: 15px 0;"><strong>R$ 77.235/mês</strong></p>
+                <p style="color: #7f8c8d;">R$ 926.820/ano</p>
+                <p style="font-size: 0.9em; margin-top: 10px;">Margem: 25% | Máxima flexibilidade</p>
+            </div>
+        </div>
+
+        <!-- SERVIÇO 2 -->
+        <h2>🚐 Serviço 2: Camaçari (Cicopal)</h2>
+
+        <h3>Estrutura Operacional</h3>
+        <div class="section">
+            <ul>
+                <li><strong>Rota:</strong> Coleta em 11 bairros → Cicopal</li>
+                <li><strong>Pontos de Coleta:</strong> Gleba E, Jardim Limoeiro, Novo Horizonte, Natal, Monte Gordo, PHQC 1, Alto da Cruz, Piacaveira, Bairro Novo, Praia de Jaua, Gravata</li>
+                <li><strong>Quilometragem:</strong> ~100 km por ciclo (coleta + retorno)</li>
+                <li><strong>Turno:</strong> Saída 05:20h | Retorno 17:10h</li>
+                <li><strong>Frequência:</strong> Segunda a Sexta</li>
+                <li><strong>Total Mensal:</strong> 4.330 km</li>
+                <li><strong>Observação:</strong> Operação noturna/madrugada (05:20h de saída)</li>
+            </ul>
+        </div>
+
+        <h3>Detalhamento de Custos</h3>
+        <div class="section">
+            <table>
+                <tr>
+                    <th>Item de Custo</th>
+                    <th>Valor Mensal</th>
+                    <th>Percentual</th>
+                </tr>
+                <tr>
+                    <td>Combustível (diesel)</td>
+                    <td class="currency">R$ 4.565,00</td>
+                    <td>26,5%</td>
+                </tr>
+                <tr>
+                    <td>Manutenção preventiva e corretiva</td>
+                    <td class="currency">R$ 6.495,00</td>
+                    <td>37,8%</td>
+                </tr>
+                <tr>
+                    <td>Mão de obra (1 motorista)</td>
+                    <td class="currency">R$ 5.250,00</td>
+                    <td>30,5%</td>
+                </tr>
+                <tr>
+                    <td>Pneus e peças de reposição</td>
+                    <td class="currency">R$ 456,00</td>
+                    <td>2,6%</td>
+                </tr>
+                <tr>
+                    <td>Seguros e taxas</td>
+                    <td class="currency">R$ 212,00</td>
+                    <td>1,2%</td>
+                </tr>
+                <tr>
+                    <td>Outros</td>
+                    <td class="currency">R$ 230,00</td>
+                    <td>1,3%</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>CUSTO OPERACIONAL TOTAL</strong></td>
+                    <td class="currency"><strong>R$ 17.208,00</strong></td>
+                    <td><strong>100%</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Proposta Comercial</h3>
+        <div class="price-box">
+            <div class="price-label">Camaçari - Turno A (1 Ônibus)</div>
+            <div class="price-value">R$ 23.742</div>
+            <div class="price-year">R$ 284.904 por ano | Margem: 25%</div>
+        </div>
+
+        <!-- CONSOLIDADO -->
+        <h2>💰 Proposta Consolidada</h2>
+
+        <div class="price-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="price-label">Total Mensal (Ambos os Serviços - RECOMENDADO)</div>
+            <div class="price-value">R$ 54.192</div>
+            <div class="price-year">R$ 650.304 por ano | Margem: 25%</div>
+        </div>
+
+        <div class="section">
+            <table>
+                <tr>
+                    <th>Serviço</th>
+                    <th>Configuração</th>
+                    <th>Mensal</th>
+                    <th>Anual</th>
+                </tr>
+                <tr>
+                    <td><strong>São Sebastião</strong></td>
+                    <td>3 veículos (otimizado)</td>
+                    <td class="currency">R$ 30.450</td>
+                    <td class="currency">R$ 365.400</td>
+                </tr>
+                <tr>
+                    <td><strong>Camaçari</strong></td>
+                    <td>1 ônibus</td>
+                    <td class="currency">R$ 23.742</td>
+                    <td class="currency">R$ 284.904</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2"><strong>TOTAL</strong></td>
+                    <td class="currency"><strong>R$ 54.192</strong></td>
+                    <td class="currency"><strong>R$ 650.304</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- DADOS PARA VALIDAÇÃO -->
+        <h2>✅ Dados Utilizados nos Cálculos</h2>
+        <div class="section">
+            <table>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Valor Utilizado</th>
+                    <th>Recomendação</th>
+                </tr>
+                <tr>
+                    <td>Consumo Ônibus (km/L)</td>
+                    <td>5,5 km/litro</td>
+                    <td>Validar com histórico</td>
+                </tr>
+                <tr>
+                    <td>Consumo Micro (km/L)</td>
+                    <td>6,5 km/litro</td>
+                    <td>Validar com histórico</td>
+                </tr>
+                <tr>
+                    <td>Preço Diesel</td>
+                    <td>R$ 5,80/litro</td>
+                    <td>Atualizar com preço real</td>
+                </tr>
+                <tr>
+                    <td>Manutenção</td>
+                    <td>R$ 1,50/km</td>
+                    <td>Verificar histórico</td>
+                </tr>
+                <tr>
+                    <td>Salário Motorista</td>
+                    <td>R$ 3.500 + 50% encargos</td>
+                    <td>Confirmar piso salarial</td>
+                </tr>
+                <tr>
+                    <td>Margem Comercial</td>
+                    <td>25%</td>
+                    <td>Negociável conforme caso</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ IMPORTANTE:</strong> Todos os números foram estimados com base nas informações fornecidas.
+            Recomenda-se validação de quilometragem (Google Maps), consumo de combustível (histórico) e custos
+            de manutenção (com fornecedores locais) antes da contratação final.
+        </div>
+
+        <!-- DIFERENCIAIS -->
+        <h2>✨ Diferenciais da Proposta</h2>
+        <div class="section">
+            <ul>
+                <li>✓ Motoristas profissionais e uniformizados</li>
+                <li>✓ Veículos limpos e bem mantidos</li>
+                <li>✓ Seguro obrigatório e responsabilidade civil</li>
+                <li>✓ Rastreamento GPS (sem custo extra)</li>
+                <li>✓ Relatório mensal de operação</li>
+                <li>✓ Atendimento 24h em emergências</li>
+                <li>✓ Manutenção preventiva programada</li>
+                <li>✓ Transparência nos custos</li>
+            </ul>
+        </div>
+
+        <!-- PRÓXIMOS PASSOS -->
+        <h2>🎯 Próximos Passos</h2>
+        <div class="section">
+            <ol>
+                <li><strong>Validação de Dados:</strong> Medir rotas no Google Maps, confirmar consumo de combustível</li>
+                <li><strong>Ajuste de Números:</strong> Se dados reais forem diferentes, refazer orçamento</li>
+                <li><strong>Apresentação:</strong> Reunião com cliente para apresentar proposta</li>
+                <li><strong>Negociação:</strong> Ajustar margem se necessário</li>
+                <li><strong>Contratação:</strong> Preparar contrato e SLAs</li>
+                <li><strong>Implementação:</strong> Adquirir/alugar veículos e recrutar pessoal</li>
+            </ol>
+        </div>
+
+        <!-- DOCUMENTAÇÃO -->
+        <h2>📁 Documentação Completa Disponível</h2>
+        <div class="section">
+            <ul>
+                <li>✓ CALCULO_DETALHADO_SAO_SEBASTIAO.md - 11 passos com fórmulas</li>
+                <li>✓ CALCULO_DETALHADO_CAMACARI.md - 11 passos com fórmulas</li>
+                <li>✓ GUIA_VERIFICACAO_CALCULOS.md - Como validar cada número</li>
+                <li>✓ ORCAMENTO_COMPLETO.md - Análise financeira detalhada</li>
+                <li>✓ RESUMO_EXECUTIVO_APRESENTACAO.md - Versão para cliente</li>
+                <li>✓ TABELA_REFERENCIA_PRECOS.md - Tabela de preços e descontos</li>
+                <li>✓ DADOS_EXTRAIDOS_COMPLETOS.csv - Base estruturada</li>
+            </ul>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Orçamento elaborado em: <strong>6 de julho de 2026</strong></p>
+            <p>Responsável: <strong>MIX Consultoria de Transportes</strong></p>
+            <p>Validade da Proposta: <strong>30 dias</strong></p>
+            <p style="margin-top: 15px;">Para mais informações, entre em contato:</p>
+            <p><strong>Email:</strong> administrativo@grupomixbrasil.com</p>
+        </footer>
+    </div>
+</body>
+</html>
